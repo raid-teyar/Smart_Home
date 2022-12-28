@@ -1,12 +1,158 @@
-﻿<Window x:Class="SecuritySystem.UI.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SecuritySystem.UI"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+﻿<Window
+    x:Class="SecuritySystem.UI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:SecuritySystem.UI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="1400"
+    Height="800"
+    Background="{DynamicResource Primary}"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
+    mc:Ignorable="d">
 
-    </Grid>
+    <DockPanel>
+
+        <!--  Navbar  -->
+        <Grid Width="300" Background="{DynamicResource Secoundary}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="1.2*" />
+                <RowDefinition Height=".7*" />
+            </Grid.RowDefinitions>
+
+            <!--  User Info  -->
+            <StackPanel>
+                <TextBlock
+                    Margin="0,40"
+                    HorizontalAlignment="Center"
+                    FontSize="26"
+                    FontWeight="Heavy"
+                    Text="SMART HOME">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Offset="0" Color="#FF4EC6A5" />
+                            <GradientStop Offset="1" Color="#FF7393FA" />
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="10" Opacity="0.5" />
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <Ellipse
+                    Width="70"
+                    Height="70"
+                    Margin="0,0,0,20">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="Resources/avatar.jpg" />
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <TextBlock
+                    Margin="0,0,0,5"
+                    HorizontalAlignment="Center"
+                    FontSize="16"
+                    FontWeight="Medium"
+                    Text="Teyar Raid" />
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    Foreground="{DynamicResource TextSecoundary}"
+                    Text="raidteyar@gmail.com" />
+            </StackPanel>
+
+            <!--  Main List  -->
+            <ListBox
+                x:Name="NavBarList"
+                Grid.Row="1"
+                SelectionChanged="NavBarSelectionChanged"
+                Style="{DynamicResource NavBar}">
+
+                <local:NavButton Header="Dashboard">
+                    <iconPacks:FontAwesome
+                        Width="25"
+                        Height="25"
+                        Kind="ThLargeSolid" />
+                </local:NavButton>
+
+                <local:NavButton Header="Devices">
+                    <iconPacks:FontAwesome
+                        Width="25"
+                        Height="25"
+                        Kind="NetworkWiredSolid" />
+                </local:NavButton>
+
+                <local:NavButton Header="History">
+                    <iconPacks:FontAwesome
+                        Width="25"
+                        Height="25"
+                        Kind="HistorySolid" />
+                </local:NavButton>
+
+                <local:NavButton Header="Notes">
+                    <iconPacks:FontAwesome
+                        Width="25"
+                        Height="25"
+                        Kind="StickyNoteSolid" />
+                </local:NavButton>
+
+                <local:NavButton Header="Settings">
+                    <iconPacks:FontAwesome
+                        Width="25"
+                        Height="25"
+                        Kind="CogSolid" />
+                </local:NavButton>
+
+            </ListBox>
+
+
+            <!--  Middle List  -->
+            <ListBox
+                Grid.Row="2"
+                VerticalAlignment="Center"
+                Style="{DynamicResource NavBar}">
+                <local:NavButton Header="Help">
+                    <iconPacks:FontAwesome
+                        Width="25"
+                        Height="25"
+                        Kind="QuestionCircleSolid" />
+                </local:NavButton>
+                <local:NavButton Header="Log Out">
+                    <iconPacks:FontAwesome
+                        Width="25"
+                        Height="25"
+                        Kind="SignOutAltSolid" />
+                </local:NavButton>
+            </ListBox>
+
+
+            <!--  Switch Button  -->
+            <StackPanel
+                Grid.Row="3"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+
+                <local:SwitchButton
+                    Checked="ThemeChecked"
+                    IsChecked="True"
+                    Unchecked="ThemeUnchecked" />
+                <TextBlock
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Text="Switch Theme" />
+            </StackPanel>
+        </Grid>
+
+
+        <!--  Page  -->
+        <ContentPresenter x:Name="MainPage" />
+
+    </DockPanel>
+
 </Window>
