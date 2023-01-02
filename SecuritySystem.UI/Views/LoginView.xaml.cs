@@ -1,4 +1,5 @@
 ﻿using SecuritySystem.UI.Models;
+using SmartHome.Contracts.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,19 +23,34 @@ namespace SecuritySystem.UI.Views
     {
 
         public User LoggedUser { get; set; }
-        
-        public LoginView()
+        public ISecurityServiceAuthorization SecurityServiceAuthorization { get; set; }
+
+        public LoginView(ISecurityServiceAuthorization securityServiceAuthorization)
         {
-         
-            
             InitializeComponent();
+            SecurityServiceAuthorization = securityServiceAuthorization;
         }
 
         private void OnLogin(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow(this);
-            mainWindow.Show();
-            Close();
+            try
+            {
+                LoggedUser = SecurityServiceAuthorization.Login(tbEmail.Text, pbPassword.Password);
+                if (LoggedUser != null)
+                {
+                    var mainWindow = new MainWindow(this);
+                    mainWindow.Show();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid email or password");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

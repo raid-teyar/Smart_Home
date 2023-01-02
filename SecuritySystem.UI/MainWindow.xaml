@@ -25,6 +25,7 @@
                 <RowDefinition Height=".7*" />
             </Grid.RowDefinitions>
 
+
             <!--  User Info  -->
             <StackPanel>
                 <TextBlock
@@ -54,12 +55,14 @@
                 </Ellipse>
 
                 <TextBlock
+                    x:Name="tbFullName"
                     Margin="0,0,0,5"
                     HorizontalAlignment="Center"
                     FontSize="16"
                     FontWeight="Medium"
                     Text="Teyar Raid" />
                 <TextBlock
+                    x:Name="tbEmail"
                     HorizontalAlignment="Center"
                     Foreground="{DynamicResource TextSecoundary}"
                     Text="raidteyar@gmail.com" />

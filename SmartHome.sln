@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Administration.Server", "Ad
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Contracts", "SmartHome.Contracts\SmartHome.Contracts.csproj", "{27F3265D-15F6-4938-9F2D-0834C7C0F866}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecuritySystem.Server", "SystemSecurity.Server\SecuritySystem.Server.csproj", "{75CBE9D2-9F77-433B-BFA9-5CD00DFE6164}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecuritySystem.Server", "SecuritySystem.Server\SecuritySystem.Server.csproj", "{75CBE9D2-9F77-433B-BFA9-5CD00DFE6164}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Resources\avatar.jpg" />
+    <None Remove="Resources\bedroom.jpg" />
     <None Remove="Resources\Fonts\Inter-Black.ttf" />
     <None Remove="Resources\Fonts\Inter-Bold.ttf" />
     <None Remove="Resources\Fonts\Inter-ExtraBold.ttf" />
@@ -26,6 +27,7 @@
     <Resource Include="Resources\avatar.jpg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\bedroom.jpg" />
     <Resource Include="Resources\Fonts\Inter-Black.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -62,13 +64,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AForge.Video" Version="2.2.5" />
+    <PackageReference Include="AForge.Video.DirectShow" Version="2.2.5" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="MahApps.Metro.IconPacks.FontAwesome" Version="4.11.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.10.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.10.0" />
   </ItemGroup>
 
   <ItemGroup>

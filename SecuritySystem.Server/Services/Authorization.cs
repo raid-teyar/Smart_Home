@@ -21,7 +21,7 @@ namespace SecuritySystem.Server.Services
         {
             using (IDbConnection cnn = new MySqlConnection(ConnectionString))
             {
-                User user = cnn.Query<User>($"SELECT * FROM user WHERE email = '{email}' AND password = '{password}' ").First();
+                User? user = cnn.Query<User>($"SELECT * FROM user WHERE email = '{email}' AND password = '{password}' ").FirstOrDefault();
                 return user;
             }
         }

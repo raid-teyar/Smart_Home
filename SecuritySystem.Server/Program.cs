@@ -17,8 +17,13 @@ var app = builder.Build();
 // configure CoreWCF endpoints
 app.UseServiceModel(serviceBuilder =>
 {
-    serviceBuilder.AddService<Authorization>();
-
+    serviceBuilder.AddService<Authorization>((options) =>
+    {
+        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
+    });
+    
+    NetTcpBinding tcpBinding = new NetTcpBinding();
+    
     serviceBuilder.AddServiceEndpoint<Authorization, ISecurityServiceAuthorization>(
         new NetTcpBinding(), "net.tcp://localhost:5000/Authorization");
 });

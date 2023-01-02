@@ -22,14 +22,17 @@ namespace SecuritySystem.UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public string LoggedUserInfo { get; set; }
+        public LoginView Context { get; set; }
         
         public MainWindow(LoginView loginView)
         {
+            Context = loginView;
             InitializeComponent();
             DataContext = this;
-
             NavBarList.SelectedItem = NavBarList.Items[0];
+
+            tbFullName.Text = Context.LoggedUser.FullName;
+            tbEmail.Text = Context.LoggedUser.Email;
         }
 
         private void ThemeChecked(object sender, RoutedEventArgs e)
@@ -49,7 +52,7 @@ namespace SecuritySystem.UI
             switch (selectedItem?.Header)
             {
                 case "Dashboard":
-                    MainPage.Content = new DashboardView();
+                    MainPage.Content = new DashboardView(Context);
                     break;
                 case "Devices":
                     MainPage.Content = new DevicesView();
