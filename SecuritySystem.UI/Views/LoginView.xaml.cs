@@ -1,4 +1,5 @@
-﻿using SecuritySystem.UI.Models;
+﻿using SecuritySystem.UI.Helpers;
+using SecuritySystem.UI.Models;
 using SmartHome.Contracts.Contracts;
 using System;
 using System.Collections.Generic;
@@ -21,21 +22,21 @@ namespace SecuritySystem.UI.Views
     /// </summary>
     public partial class LoginView : Window
     {
-
+        
         public User LoggedUser { get; set; }
-        public ISecurityServiceAuthorization SecurityServiceAuthorization { get; set; }
+        public ServicesGrabber Services { get; set; }
 
-        public LoginView(ISecurityServiceAuthorization securityServiceAuthorization)
+        public LoginView(ServicesGrabber services)
         {
             InitializeComponent();
-            SecurityServiceAuthorization = securityServiceAuthorization;
+            Services = services;
         }
 
         private void OnLogin(object sender, RoutedEventArgs e)
         {
             try
             {
-                LoggedUser = SecurityServiceAuthorization.Login(tbEmail.Text, pbPassword.Password);
+                LoggedUser = Services.Authorization.Login(tbEmail.Text, pbPassword.Password);
                 if (LoggedUser != null)
                 {
                     var mainWindow = new MainWindow(this);

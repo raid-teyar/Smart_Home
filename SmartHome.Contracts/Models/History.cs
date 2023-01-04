@@ -11,7 +11,7 @@ namespace SmartHome.Contracts.Models
     {
         public int Id { get; set; }
         public DateTime Time { get; set; }
-        public User User { get; set; }
+        public User? User { get; set; }
         public string Action { get; set; }
     }
 }

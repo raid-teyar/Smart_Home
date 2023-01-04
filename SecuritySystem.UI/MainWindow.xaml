@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
     xmlns:local="clr-namespace:SecuritySystem.UI.Controls"
+    
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
     Width="1400"
@@ -115,6 +116,8 @@
 
             <!--  Middle List  -->
             <ListBox
+                x:Name="OptionsNavbar"
+                SelectionChanged="OptionsNavbarSelectionChanged"
                 Grid.Row="2"
                 VerticalAlignment="Center"
                 Style="{DynamicResource NavBar}">

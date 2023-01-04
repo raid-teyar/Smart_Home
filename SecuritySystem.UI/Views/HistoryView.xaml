@@ -5,14 +5,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SecuritySystem.UI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:Background="{DynamicResource Primary}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            FontSize="40"
-            Text="History" />
+        <TextBlock HorizontalAlignment="Center" Margin="20" FontSize="24" Text="History"/>
+        <Border Margin="80" Style="{DynamicResource Card}">
+            <ListBox
+                Grid.Row="1"
+                ItemContainerStyle="{DynamicResource historyItem}"
+                ItemsSource="{Binding HistoryList}" />
+        </Border>
     </Grid>
+
+
 </UserControl>

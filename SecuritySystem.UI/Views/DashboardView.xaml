@@ -8,6 +8,7 @@
     xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:Background="{DynamicResource Primary}"
+    Loaded="Window_Loaded"
     d:DesignHeight="800"
     d:DesignWidth="1400"
     mc:Ignorable="d">
@@ -67,11 +68,8 @@
                 <Button
                     Grid.Column="2"
                     Margin="0,0,40,0"
-                    Padding="0"
                     HorizontalAlignment="Right"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    Foreground="{DynamicResource Text}">
+                    Style="{DynamicResource circularIconButton}">
                     <iconPacks:FontAwesome
                         Width="30"
                         Height="30"
@@ -170,7 +168,7 @@
                             Margin="0,0,0,20"
                             FontSize="16"
                             FontWeight="Medium"
-                            Text="Humidity of air" />
+                            Text="Humidity" />
                         <TextBlock
                             Margin="10,0,0,0"
                             FontSize="24"
@@ -240,11 +238,14 @@
                         FontWeight="SemiBold"
                         Text="Devices" />
 
-                    <TextBlock
+                    <Button
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
+                        Click="ViewAllDevices_Click"
+                        Content="View All"
                         FontSize="14"
-                        Text="View all" />
+                        Style="{DynamicResource circularTextButton}" />
+
                     <StackPanel
                         Grid.Row="1"
                         HorizontalAlignment="Center"
@@ -262,52 +263,14 @@
                                     Height="20"
                                     Margin="8"
                                     Foreground="{DynamicResource Text}"
-                                    Kind="CameraSolid" />
+                                    Kind="{Binding Path=Devices[0].Type, Converter={StaticResource DeviceTypeToIconConverter}}" />
 
                                 <local:SwitchButton
                                     Width="40"
                                     Height="22"
                                     HorizontalAlignment="Right"
                                     Checked="SwitchButton_Checked"
-                                    Unchecked="SwitchButton_UnChecked">
-                                    <local:SwitchButton.Effect>
-                                        <DropShadowEffect
-                                            BlurRadius="5"
-                                            Opacity="0.5"
-                                            RenderingBias="Quality"
-                                            ShadowDepth="3" />
-                                    </local:SwitchButton.Effect>
-                                </local:SwitchButton>
-
-                                <TextBlock
-                                    Grid.Row="1"
-                                    Margin="10"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom"
-                                    FontSize="14"
-                                    Text="Canon EOS R6" />
-                            </Grid>
-
-                        </Border>
-                        <Border Style="{DynamicResource OffDeviceCard}">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-
-                                <iconPacks:PackIconFontAwesome
-                                    Width="20"
-                                    Margin="8,8,0,8"
-                                    VerticalAlignment="Stretch"
-                                    Foreground="{DynamicResource Text}"
-                                    Kind="ThermometerHalfSolid" />
-
-                                <local:SwitchButton
-                                    Width="40"
-                                    Height="22"
-                                    HorizontalAlignment="Right"
-                                    Checked="SwitchButton_Checked"
+                                    IsChecked="{Binding Devices[0].State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Unchecked="SwitchButton_UnChecked" />
 
                                 <TextBlock
@@ -316,12 +279,12 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Bottom"
                                     FontSize="14"
-                                    Text="NTC temp" />
+                                    Text="{Binding Devices[0].Name}" />
                             </Grid>
 
                         </Border>
-
                         <Border Style="{DynamicResource OffDeviceCard}">
+
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
@@ -333,13 +296,14 @@
                                     Height="20"
                                     Margin="8"
                                     Foreground="{DynamicResource Text}"
-                                    Kind="TintSolid" />
+                                    Kind="{Binding Path=Devices[1].Type, Converter={StaticResource DeviceTypeToIconConverter}}" />
 
                                 <local:SwitchButton
                                     Width="40"
                                     Height="22"
                                     HorizontalAlignment="Right"
                                     Checked="SwitchButton_Checked"
+                                    IsChecked="{Binding Devices[1].State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Unchecked="SwitchButton_UnChecked" />
 
                                 <TextBlock
@@ -348,12 +312,12 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Bottom"
                                     FontSize="14"
-                                    Text="RTD humidity" />
+                                    Text="{Binding Devices[1].Name}" />
                             </Grid>
 
                         </Border>
-
                         <Border Style="{DynamicResource OffDeviceCard}">
+
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
@@ -365,13 +329,14 @@
                                     Height="20"
                                     Margin="8"
                                     Foreground="{DynamicResource Text}"
-                                    Kind="CameraSolid" />
+                                    Kind="{Binding Path=Devices[2].Type, Converter={StaticResource DeviceTypeToIconConverter}}" />
 
                                 <local:SwitchButton
                                     Width="40"
                                     Height="22"
                                     HorizontalAlignment="Right"
                                     Checked="SwitchButton_Checked"
+                                    IsChecked="{Binding Devices[2].State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     Unchecked="SwitchButton_UnChecked" />
 
                                 <TextBlock
@@ -380,12 +345,43 @@
                                     HorizontalAlignment="Center"
                                     VerticalAlignment="Bottom"
                                     FontSize="14"
-                                    Text="Nikon Z 6II" />
+                                    Text="{Binding Devices[2].Name}" />
                             </Grid>
 
                         </Border>
+                        <Border Style="{DynamicResource OffDeviceCard}">
 
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
 
+                                <iconPacks:PackIconFontAwesome
+                                    Width="20"
+                                    Height="20"
+                                    Margin="8"
+                                    Foreground="{DynamicResource Text}"
+                                    Kind="{Binding Path=Devices[3].Type, Converter={StaticResource DeviceTypeToIconConverter}}" />
+
+                                <local:SwitchButton
+                                    Width="40"
+                                    Height="22"
+                                    HorizontalAlignment="Right"
+                                    Checked="SwitchButton_Checked"
+                                    IsChecked="{Binding Devices[3].State, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    Unchecked="SwitchButton_UnChecked" />
+
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Margin="10"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Bottom"
+                                    FontSize="14"
+                                    Text="{Binding Devices[3].Name}" />
+                            </Grid>
+
+                        </Border>
                     </StackPanel>
                 </Grid>
 
@@ -409,19 +405,19 @@
                         FontWeight="SemiBold"
                         Text="History" />
 
-                    <TextBlock
+                    <Button
                         Margin="0,0,0,10"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
+                        Click="ViewAllHistory_Click"
+                        Content="View All"
                         FontSize="14"
-                        Text="View all" />
+                        Style="{DynamicResource circularTextButton}" />
 
-                    <ListBox Grid.Row="1">
-                        <ListBoxItem Style="{DynamicResource history}">Teyar Raid Closed the door at 07:31 am</ListBoxItem>
-                        <ListBoxItem Style="{DynamicResource history}">Teyar Raid Turned on temp sensor at 03:48 pm</ListBoxItem>
-                        <ListBoxItem Style="{DynamicResource history}">Teyar Raid Turned off humidity sensor at 03:12 pm</ListBoxItem>
-                        <ListBoxItem Style="{DynamicResource history}">Teyar Raid Turned on kitchen camera  at 12:11 pm</ListBoxItem>
-                    </ListBox>
+                    <ListBox
+                        Grid.Row="1"
+                        ItemContainerStyle="{DynamicResource historyItem}"
+                        ItemsSource="{Binding HistoryList}" />
                 </Grid>
             </Border>
             <Border
@@ -447,6 +443,7 @@
                         Grid.Row="1"
                         Width="200"
                         Height="200"
+                        Visibility="Collapsed"
                         HorizontalAlignment="Center"
                         Kind="DoorClosedSolid">
                         <iconPacks:PackIconFontAwesome.Foreground>

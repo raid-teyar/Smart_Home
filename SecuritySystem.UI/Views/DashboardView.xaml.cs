@@ -19,6 +19,7 @@ using AForge.Video.DirectShow;
 using System.Drawing;
 using System.IO;
 using SecuritySystem.UI.Helpers;
+using SmartHome.Contracts.Models;
 
 namespace SecuritySystem.UI.Views
 {
@@ -27,8 +28,16 @@ namespace SecuritySystem.UI.Views
     /// </summary>
     public partial class DashboardView : UserControl
     {
+        public List<History> HistoryList { get; set; }
+        private bool isFirstLoad;
 
-        public LoginView Context { get; set; }
+        public List<Device> Devices
+        {
+            get;
+            set;
+        }
+
+        public MainWindow MainWindowContext { get; set; }
 
         VideoCaptureDevice videoCapture;
         FilterInfoCollection filterInfo;
@@ -59,59 +68,145 @@ namespace SecuritySystem.UI.Views
                 {
                     CamPreview.ImageSource = converter.Convert((Bitmap)e.Frame.Clone());
                 });
-                
             }
-            catch (Exception ex)
+            catch
             {
-              
             }
-
         }
 
-        public DashboardView(LoginView loginView)
+        public DashboardView(MainWindow mainwindow)
         {
-            Context = loginView;
+            isFirstLoad = true;
+            MainWindowContext = mainwindow;
             InitializeComponent();
             DataContext = this;
 
-            tbWelcome.Text = "Welcome home, " + Context.LoggedUser.FullName + "!";
+            tbWelcome.Text = "Welcome home, " + MainWindowContext.LoginContext.LoggedUser.FullName + "!";
             StartCamera();
+
+            // get only the first 5 history items
+            HistoryList = MainWindowContext.LoginContext.Services.History.GetHistory().Take(5).ToList();
+
+            // get only the first 4 devices
+            Devices = MainWindowContext.LoginContext.Services.Device.GetDevices().Take(4).ToList();
+
+            // get initial door state
+            bool isDoorClosed = MainWindowContext.LoginContext.Services.Door.IsDoorClosed();
+            if (isDoorClosed)
+            {
+                ipDoorClosed.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ipDoorOpen.Visibility = Visibility.Visible;
+            }
         }
-
-
 
         private void SwitchButton_Checked(object sender, RoutedEventArgs e)
         {
+            // card style switching
             Grid ownerGrid = (Grid)VisualTreeHelper.GetParent((SwitchButton)sender);
             Border ownerBorder = (Border)VisualTreeHelper.GetParent(ownerGrid);
-
-            Style style = FindResource("OnDeviceCard") as Style;
-
+            Style? style = FindResource("OnDeviceCard") as Style;
             ownerBorder.Style = style;
+
+            if (!isFirstLoad)
+            {
+                // updating devices
+                MainWindowContext.LoginContext.Services.Device.UpdateDevcies(Devices);
+
+                // update the history
+                SwitchButton switchButton = (SwitchButton)sender;
+                Grid parentGrid = (Grid)VisualTreeHelper.GetParent(switchButton);
+
+                TextBlock? nameTextBlock = parentGrid.Children.OfType<TextBlock>().FirstOrDefault();
+
+                History history = new History()
+                {
+                    Time = DateTime.Now,
+                    Action = "Turned on " + nameTextBlock?.Text,
+                    User = MainWindowContext.LoginContext.LoggedUser
+                };
+
+                MainWindowContext.LoginContext.Services.History.AddHistoryItem(history);
+            }
         }
 
         private void SwitchButton_UnChecked(object sender, RoutedEventArgs e)
         {
+            // card style switching
             Grid ownerGrid = (Grid)VisualTreeHelper.GetParent((SwitchButton)sender);
             Border ownerBorder = (Border)VisualTreeHelper.GetParent(ownerGrid);
-
-            Style style = FindResource("OffDeviceCard") as Style;
-
+            Style? style = FindResource("OffDeviceCard") as Style;
             ownerBorder.Style = style;
-        }
 
+            if (!isFirstLoad)
+            {
+                // updating devices
+                MainWindowContext.LoginContext.Services.Device.UpdateDevcies(Devices);
+
+                // update the history
+                SwitchButton switchButton = (SwitchButton)sender;
+                Grid parentGrid = (Grid)VisualTreeHelper.GetParent(switchButton);
+
+                TextBlock? nameTextBlock = parentGrid.Children.OfType<TextBlock>().FirstOrDefault();
+
+                History history = new History()
+                {
+                    Time = DateTime.Now,
+                    Action = "Turned off " + nameTextBlock?.Text,
+                    User = MainWindowContext.LoginContext.LoggedUser
+                };
+
+                MainWindowContext.LoginContext.Services.History.AddHistoryItem(history);
+            }
+        }
 
         private void CloseDoor_Clicked(object sender, RoutedEventArgs e)
         {
             ipDoorOpen.Visibility = Visibility.Collapsed;
             ipDoorClosed.Visibility = Visibility.Visible;
+            MainWindowContext.LoginContext.Services.Door.CloseDoor();
+
+            // add history item
+            History history = new History()
+            {
+                Time = DateTime.Now,
+                Action = "Closed the door",
+                User = MainWindowContext.LoginContext.LoggedUser
+            };
+            MainWindowContext.LoginContext.Services.History.AddHistoryItem(history);
         }
 
         private void OpenDoor_Click(object sender, RoutedEventArgs e)
         {
             ipDoorClosed.Visibility = Visibility.Collapsed;
             ipDoorOpen.Visibility = Visibility.Visible;
+            MainWindowContext.LoginContext.Services.Door.OpenDoor();
+
+            // add history item
+            History history = new History()
+            {
+                Time = DateTime.Now,
+                Action = "Opened the door",
+                User = MainWindowContext.LoginContext.LoggedUser
+            };
+            MainWindowContext.LoginContext.Services.History.AddHistoryItem(history);
         }
 
+        private void ViewAllHistory_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindowContext.NavBarList.SelectedItem = MainWindowContext.NavBarList.Items[2];
+        }
+
+        private void ViewAllDevices_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindowContext.NavBarList.SelectedItem = MainWindowContext.NavBarList.Items[1];
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            isFirstLoad = false;
+        }
     }
 }

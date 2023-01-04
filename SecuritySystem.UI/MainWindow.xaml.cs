@@ -22,17 +22,17 @@ namespace SecuritySystem.UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public LoginView Context { get; set; }
+        public LoginView LoginContext { get; set; }
         
         public MainWindow(LoginView loginView)
         {
-            Context = loginView;
+            LoginContext = loginView;
             InitializeComponent();
             DataContext = this;
             NavBarList.SelectedItem = NavBarList.Items[0];
 
-            tbFullName.Text = Context.LoggedUser.FullName;
-            tbEmail.Text = Context.LoggedUser.Email;
+            tbFullName.Text = LoginContext.LoggedUser.FullName;
+            tbEmail.Text = LoginContext.LoggedUser.Email;
         }
 
         private void ThemeChecked(object sender, RoutedEventArgs e)
@@ -52,19 +52,40 @@ namespace SecuritySystem.UI
             switch (selectedItem?.Header)
             {
                 case "Dashboard":
-                    MainPage.Content = new DashboardView(Context);
+                    MainPage.Content = new DashboardView(this);
                     break;
                 case "Devices":
-                    MainPage.Content = new DevicesView();
+                    MainPage.Content = new DevicesView(this);
                     break;
                 case "Notes":
                     MainPage.Content = new NotesView();
                     break;
                 case "History":
-                    MainPage.Content = new HistoryView();
+                    MainPage.Content = new HistoryView(this);
                     break;
                 case "Settings":
                     MainPage.Content = new SettingsView();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void OptionsNavbarSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            NavButton? selectedItem = OptionsNavbar.SelectedItem as NavButton;
+
+            switch (selectedItem?.Header)
+            {
+                case "Log Out":
+                    LoginView loginView = new LoginView(LoginContext.Services);
+                    LoginContext.Services.Authorization.Logout(LoginContext.LoggedUser);
+                    loginView.Show();
+                    Close();
+                    break;
+                case "Help":
+                    MessageBox.Show("Help me nigga!!!");
+                    selectedItem.IsSelected = false;
                     break;
                 default:
                     break;

@@ -3,9 +3,6 @@ using SmartHome.Contracts.Contracts;
 
 var builder = WebApplication.CreateBuilder();
 
-// register the contract implementation
-builder.Services.AddTransient<Authorization>();
-
 // Add services to the container.
 builder.Services.AddServiceModelServices();
 
@@ -17,15 +14,37 @@ var app = builder.Build();
 // configure CoreWCF endpoints
 app.UseServiceModel(serviceBuilder =>
 {
-    serviceBuilder.AddService<Authorization>((options) =>
+    serviceBuilder.AddService<AuthorizationService>((options) =>
     {
         options.DebugBehavior.IncludeExceptionDetailInFaults = true;
     });
-    
-    NetTcpBinding tcpBinding = new NetTcpBinding();
-    
-    serviceBuilder.AddServiceEndpoint<Authorization, ISecurityServiceAuthorization>(
+
+    serviceBuilder.AddService<HistoryService>((options) =>
+    {
+        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
+    });
+
+    serviceBuilder.AddService<DeviceService>((options) =>
+    {
+        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
+    });
+
+    serviceBuilder.AddService<DoorService>((options) =>
+    {
+        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
+    });
+
+    serviceBuilder.AddServiceEndpoint<AuthorizationService, ISecuritySystemAuthorization>(
         new NetTcpBinding(), "net.tcp://localhost:5000/Authorization");
+
+    serviceBuilder.AddServiceEndpoint<HistoryService, ISecuritySystemHistory>(
+        new NetTcpBinding(), "net.tcp://localhost:5000/History");
+
+    serviceBuilder.AddServiceEndpoint<DeviceService, ISecuritySystemDevice>(
+        new NetTcpBinding(), "net.tcp://localhost:5000/Device");
+
+    serviceBuilder.AddServiceEndpoint<DoorService, ISecuritySystemDoor>(
+        new NetTcpBinding(), "net.tcp://localhost:5000/Door");
 });
 
 app.Run();
