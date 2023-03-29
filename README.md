@@ -19,8 +19,10 @@ The Smart Home solution is built using a component-oriented design and comprises
 
 ## Usage
 To use the Smart Home solution, you will need to build the solution in Visual Studio and then run the appropriate projects depending on the functionality you want to test.
-
+You can use the SQL [script](/scripts/smart_home.sql) to generated the needed schema, fill it up the way you want.
+Make sure to put the appropriate connection strings on both Glabals.cs files on both servers projects.
 To run the SecuritySystem.UI or DoorApp clients, you will need to run the SecuritySystem.Server project first. Similarly, the Administration.WebApp requires the Administration.Server project to be running.
+
 
 ## Screenshots
 Here are some screenshots of the Smart Home application:
