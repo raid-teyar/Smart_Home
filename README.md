@@ -13,14 +13,16 @@ The Smart Home solution is built using a component-oriented design and comprises
 
 - Administration.WebApp: An ASP.NET web application that allows users to manage the Smart Home system. Through this app, users can add/modify/delete connected objects and users.
 
-- DoorApp: A WPF client application that will be installed on the door to let people request the door to open. It talks with the SecuritySystem server to authenticate the user and open the door.
+- DoorApp: A WPF client application that will be installed on the door to let people request the door to open. It notifies the SecuritySystem server to open the door.
 
 - SmartHome.Contracts: A project that holds interfaces for the services and model classes used by the other projects.
 
 ## Usage
 To use the Smart Home solution, you will need to build the solution in Visual Studio and then run the appropriate projects depending on the functionality you want to test.
-
+You can use the SQL [script](/scripts/smart_home.sql) to generated the needed schema, fill it up the way you want.
+Make sure to put the appropriate connection strings on both Glabals.cs files on both servers projects.
 To run the SecuritySystem.UI or DoorApp clients, you will need to run the SecuritySystem.Server project first. Similarly, the Administration.WebApp requires the Administration.Server project to be running.
+
 
 ## Screenshots
 Here are some screenshots of the Smart Home application:
@@ -47,7 +49,7 @@ Here are some screenshots of the Smart Home application:
 To build and run the Smart Home solution, you will need:
 
 Visual Studio 2019 or later
-.NET Framework 4.7.2 or later
+.NET 6.0 or later
 Windows Communication Foundation (WCF)
 ## Future Work
 Some potential areas for future development of the Smart Home solution include:
@@ -55,8 +57,6 @@ Some potential areas for future development of the Smart Home solution include:
 - Adding more security-related features such as facial recognition for user authentication or integration with external security systems.
 - Adding more connected objects such as smart thermostats or lighting systems.
 - Improving the user interfaces of the client applications to be more intuitive and user-friendly.
-## Credits
-This Smart Home solution was created by me as part of a University project.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md]() file for details.
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
