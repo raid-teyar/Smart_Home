@@ -15,15 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Administration.WebApp", "Ad
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoorApp", "DoorApp\DoorApp.csproj", "{15BB7D9C-1843-44B0-956E-FCE831F1E5C4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "screenshots", "screenshots", "{CF0F5699-0226-4F91-93D5-C1708D60E00F}"
-	ProjectSection(SolutionItems) = preProject
-		..\..\..\Downloads\dashboard.png = ..\..\..\Downloads\dashboard.png
-		..\..\..\Downloads\devices.png = ..\..\..\Downloads\devices.png
-		..\..\..\Downloads\devices_manage.png = ..\..\..\Downloads\devices_manage.png
-		..\..\..\Downloads\history.png = ..\..\..\Downloads\history.png
-		..\..\..\Downloads\login.png = ..\..\..\Downloads\login.png
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
