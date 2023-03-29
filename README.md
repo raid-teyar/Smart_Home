@@ -55,8 +55,6 @@ Some potential areas for future development of the Smart Home solution include:
 - Adding more security-related features such as facial recognition for user authentication or integration with external security systems.
 - Adding more connected objects such as smart thermostats or lighting systems.
 - Improving the user interfaces of the client applications to be more intuitive and user-friendly.
-## Credits
-This Smart Home solution was created by me as part of a University project.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md]() file for details.
