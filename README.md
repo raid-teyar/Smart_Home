@@ -57,4 +57,4 @@ Some potential areas for future development of the Smart Home solution include:
 - Improving the user interfaces of the client applications to be more intuitive and user-friendly.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md]() file for details.
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
