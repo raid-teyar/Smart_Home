@@ -13,7 +13,7 @@ The Smart Home solution is built using a component-oriented design and comprises
 
 - Administration.WebApp: An ASP.NET web application that allows users to manage the Smart Home system. Through this app, users can add/modify/delete connected objects and users.
 
-- DoorApp: A WPF client application that will be installed on the door to let people request the door to open. It talks with the SecuritySystem server to authenticate the user and open the door.
+- DoorApp: A WPF client application that will be installed on the door to let people request the door to open. It notifies the SecuritySystem server to open the door.
 
 - SmartHome.Contracts: A project that holds interfaces for the services and model classes used by the other projects.
 
@@ -47,7 +47,7 @@ Here are some screenshots of the Smart Home application:
 To build and run the Smart Home solution, you will need:
 
 Visual Studio 2019 or later
-.NET Framework 4.7.2 or later
+.NET 6.0 or later
 Windows Communication Foundation (WCF)
 ## Future Work
 Some potential areas for future development of the Smart Home solution include:
