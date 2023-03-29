@@ -15,8 +15,6 @@
                 -->
                 <ResourceDictionary Source="Themes/Dark.xaml" />
                 <ResourceDictionary Source="Themes/Generic.xaml" />
-
-                <ResourceDictionary Source="pack://application:,,,/BusyIndicator;component/Theme/Default.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
 
@@ -355,7 +353,7 @@
                 </Setter>
             </Style>
 
-           
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -5,6 +5,7 @@ using Dapper;
 
 namespace SecuritySystem.Server.Services
 {
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
     public class DoorService : ISecuritySystemDoor
     {
         public void CloseDoor()

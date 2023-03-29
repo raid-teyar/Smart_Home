@@ -10,7 +10,7 @@
     <Using Include="CoreWCF.Channels" />
     <Using Include="CoreWCF.Description" />
     <Using Include="System.Runtime.Serialization " />
-    <Using Include="SystemSecurity.Server" />
+    <Using Include="SecuritySystem.Server" />
     <Using Include="Microsoft.Extensions.DependencyInjection.Extensions" />
   </ItemGroup>
   <ItemGroup>

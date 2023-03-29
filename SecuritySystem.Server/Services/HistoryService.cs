@@ -3,14 +3,12 @@ using SmartHome.Contracts.Models;
 using Dapper;
 using System.Data;
 using MySql.Data.MySqlClient;
-using SecuritySystem.UI.Models;
 
 namespace SecuritySystem.Server.Services
 {
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
     public class HistoryService : ISecuritySystemHistory
     {
-
-
         public List<History> GetHistory()
         {
             using (IDbConnection cnn = new MySqlConnection(Globals.ConnectionString))

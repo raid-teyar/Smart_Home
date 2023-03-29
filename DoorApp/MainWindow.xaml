@@ -1,0 +1,24 @@
+﻿<Window
+    x:Class="DoorApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:DoorApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Door App"
+    Width="800"
+    Height="550"
+    mc:Ignorable="d">
+    <Grid>
+        <Image Source="carpet.jpg" Stretch="UniformToFill" />
+        <ToggleButton
+            x:Name="mainButton"
+            Width="180"
+            Margin="5"
+            Click="onClick"
+            Content="Request to enter"
+            Style="{StaticResource ToggleButtonLoadingSuccess}" />
+
+    </Grid>
+</Window>

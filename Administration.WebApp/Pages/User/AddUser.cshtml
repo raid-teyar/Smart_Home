@@ -1,0 +1,162 @@
+﻿@page
+@model Administration.WebApp.Pages.User.AddUserModel
+@{
+    ViewData["Title"] = "Add User";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/had.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+
+
+
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <!--<img src="images/logo.png" alt="">-->
+            </div>
+
+            <span class="logo_name">CodingLab</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li>
+                    <a asp-page="/Home">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Dahsboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-page="/User/Users">
+                        <i class="uil uil-user-plus"></i>
+                        <span class="link-name">Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-page="/Device/Devices">
+                        <i class="uil uil-desktop-cloud-alt"></i>
+                        <span class="link-name">Devices</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li>
+                    <a asp-page="/Index">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+
+            <!--<img src="images/profile.jpg" alt="">-->
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title mb-md-3">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">Add User</span>
+                </div>
+
+                <!-- add user form -->
+
+                <form asp-page-handler="AddUser" method="post">
+                    <div asp-validation-summary="All"></div>
+                    <div>
+                        <label class="form-label">Full Name: </label>
+                        <input class="form-control" asp-for="User.FullName" />
+                    </div>
+
+                    <div>
+                        <label class="form-label">Email: </label>
+                        <input class="form-control" asp-for="User.Email" />
+                    </div>
+                    
+                    <div>
+                        <label class="form-label">Password: </label>
+                        <input class="form-control" asp-for="User.Password" />
+                    </div>
+                    
+                    <div>
+                        <label class="form-label">Role: </label>
+                        
+                        <!-- dropdown for usertype -->
+                        <select class="form-control" asp-for="User.UserType">
+                            <option value="0">Admin</option>
+                            <option value="1">Resident</option>
+                            <option value="2">Guest</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-primary mt-3" type="submit">Add</button>
+                    </div>
+                </form>
+
+
+            </div>
+    </section>
+
+
+    <script type="text/javascript">
+        const body = document.querySelector("body"),
+            modeToggle = body.querySelector(".mode-toggle");
+        sidebar = body.querySelector("nav");
+        sidebarToggle = body.querySelector(".sidebar-toggle");
+
+        let getMode = localStorage.getItem("mode");
+        if (getMode && getMode === "dark") {
+            body.classList.toggle("dark");
+        }
+
+        let getStatus = localStorage.getItem("status");
+        if (getStatus && getStatus === "close") {
+            sidebar.classList.toggle("close");
+        }
+
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            if (body.classList.contains("dark")) {
+                localStorage.setItem("mode", "dark");
+            } else {
+                localStorage.setItem("mode", "light");
+            }
+        });
+
+        sidebarToggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+            if (sidebar.classList.contains("close")) {
+                localStorage.setItem("status", "close");
+            } else {
+                localStorage.setItem("status", "open");
+            }
+        })
+    </script>
+
+</body>

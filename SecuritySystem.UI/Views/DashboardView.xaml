@@ -8,9 +8,10 @@
     xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:Background="{DynamicResource Primary}"
-    Loaded="Window_Loaded"
     d:DesignHeight="800"
     d:DesignWidth="1400"
+    Loaded="Window_Loaded"
+    
     mc:Ignorable="d">
     <Grid>
         <Grid Margin="40,20">
@@ -443,9 +444,9 @@
                         Grid.Row="1"
                         Width="200"
                         Height="200"
-                        Visibility="Collapsed"
                         HorizontalAlignment="Center"
-                        Kind="DoorClosedSolid">
+                        Kind="DoorClosedSolid"
+                        Visibility="Collapsed">
                         <iconPacks:PackIconFontAwesome.Foreground>
                             <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
                                 <GradientStop Offset="1" Color="#FF4FC6A3" />

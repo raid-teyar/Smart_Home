@@ -1,5 +1,5 @@
 ﻿using SecuritySystem.UI.Helpers;
-using SecuritySystem.UI.Models;
+using SmartHome.Contracts.Models;
 using SmartHome.Contracts.Contracts;
 using System;
 using System.Collections.Generic;

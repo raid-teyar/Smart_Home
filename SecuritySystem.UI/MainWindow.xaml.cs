@@ -1,19 +1,8 @@
 ﻿using SecuritySystem.UI.Controls;
 using SecuritySystem.UI.Views;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SecuritySystem.UI
 {
@@ -23,7 +12,8 @@ namespace SecuritySystem.UI
     public partial class MainWindow : Window
     {
         public LoginView LoginContext { get; set; }
-        
+        public DashboardView DashboardView { get; set; }
+
         public MainWindow(LoginView loginView)
         {
             LoginContext = loginView;
@@ -52,7 +42,8 @@ namespace SecuritySystem.UI
             switch (selectedItem?.Header)
             {
                 case "Dashboard":
-                    MainPage.Content = new DashboardView(this);
+                    DashboardView = new DashboardView(this);
+                    MainPage.Content = DashboardView;
                     break;
                 case "Devices":
                     MainPage.Content = new DevicesView(this);
@@ -90,6 +81,13 @@ namespace SecuritySystem.UI
                 default:
                     break;
             }
+        }
+
+        private void OnClosed(object sender, EventArgs e)
+        {
+            // closing the camera and freeing resources
+            DashboardView.videoCapture.SignalToStop();
+            DashboardView.videoCapture = null;    
         }
     }
 }

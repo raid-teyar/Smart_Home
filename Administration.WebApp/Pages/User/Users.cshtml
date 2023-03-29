@@ -1,0 +1,164 @@
+﻿@page
+@model Administration.WebApp.Pages.User.UsersModel
+@{
+    ViewData["Title"] = "Users";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/had.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <!--<img src="images/logo.png" alt="">-->
+            </div>
+
+            <span class="logo_name">CodingLab</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li>
+                    <a asp-page="/Home">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Dahsboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-page="/User/Users">
+                        <i class="uil uil-user-plus"></i>
+                        <span class="link-name">Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-page="/Device/Devices">
+                        <i class="uil uil-desktop-cloud-alt"></i>
+                        <span class="link-name">Devices</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li>
+                    <a asp-page="/Index">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <a>
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+
+            <!--<img src="images/profile.jpg" alt="">-->
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-user-plus"></i>
+
+                    <span class="text">Users</span>
+                </div>
+
+                <!-- add user button -->
+                <a class="btn btn-success mt-3" asp-page="/User/AddUser">Add User</a>
+
+
+               
+                
+                <!-- list of users -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr>
+                                <th scope="row">@user.Id</th>
+                                <td>@user.FullName</td>
+                                <td>@user.Email</td>
+                                <td>@user.Password</td>
+                                <td>@user.UserType</td>
+                                <td>
+                                    <a asp-page="/User/EditUser" class="btn btn-primary" asp-route-id="@user.Id">Edit</a> |
+
+                                    <form asp-page-handler="DeleteUser" asp-route-id="@user.Id" method="post" style="display:inline">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </section>
+   
+
+    <script type="text/javascript">
+        const body = document.querySelector("body"),
+            modeToggle = body.querySelector(".mode-toggle");
+        sidebar = body.querySelector("nav");
+        sidebarToggle = body.querySelector(".sidebar-toggle");
+
+        let getMode = localStorage.getItem("mode");
+        if (getMode && getMode === "dark") {
+            body.classList.toggle("dark");
+        }
+
+        let getStatus = localStorage.getItem("status");
+        if (getStatus && getStatus === "close") {
+            sidebar.classList.toggle("close");
+        }
+
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            if (body.classList.contains("dark")) {
+                localStorage.setItem("mode", "dark");
+            } else {
+                localStorage.setItem("mode", "light");
+            }
+        });
+
+        sidebarToggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+            if (sidebar.classList.contains("close")) {
+                localStorage.setItem("status", "close");
+            } else {
+                localStorage.setItem("status", "open");
+            }
+        })
+    </script>
+  
+</body>

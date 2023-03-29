@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "SystemSecurity.Server": {
+    "SecuritySystem.Server": {
       "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

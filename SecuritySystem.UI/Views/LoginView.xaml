@@ -7,9 +7,9 @@
     xmlns:local="clr-namespace:SecuritySystem.UI.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="LoginView"
-    WindowStartupLocation="CenterScreen"
     Width="800"
     Height="450"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid Background="{DynamicResource Primary}">
         <Grid.ColumnDefinitions>
@@ -29,9 +29,12 @@
                 Text="Who are you ?" />
 
             <TextBlock Margin="0,10" Text="Email" />
-            <TextBox Name="tbEmail" Margin="0,0,0,10">raidteyar@gmail.com</TextBox>
+            <TextBox Name="tbEmail" Margin="0,0,0,10">test@test.com</TextBox>
             <TextBlock Margin="0,10" Text="Password" />
-            <PasswordBox Name="pbPassword" Margin="0,0,0,10" Password="minouch07" />
+            <PasswordBox
+                Name="pbPassword"
+                Margin="0,0,0,10"
+                Password="testtest" />
             <Button
                 Margin="0,20"
                 HorizontalAlignment="Left"

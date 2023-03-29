@@ -1,0 +1,55 @@
+* {
+    /* Change your font family */
+    font-family: sans-serif;
+}
+.dash-content .boxes .box1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    width: 100%;
+
+    padding: 15px 20px;
+    background-color: var(--box1-color);
+    transition: var(--tran-05);
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 700px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+    background-color: #fff;
+    color: black;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid black;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #fff;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid black;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: black;
+}

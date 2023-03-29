@@ -14,25 +14,15 @@ var app = builder.Build();
 // configure CoreWCF endpoints
 app.UseServiceModel(serviceBuilder =>
 {
-    serviceBuilder.AddService<AuthorizationService>((options) =>
-    {
-        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
-    });
+    serviceBuilder.AddService<AuthorizationService>();
 
-    serviceBuilder.AddService<HistoryService>((options) =>
-    {
-        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
-    });
+    serviceBuilder.AddService<HistoryService>();
 
-    serviceBuilder.AddService<DeviceService>((options) =>
-    {
-        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
-    });
+    serviceBuilder.AddService<DeviceService>();
 
-    serviceBuilder.AddService<DoorService>((options) =>
-    {
-        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
-    });
+    serviceBuilder.AddService<DoorService>();
+
+    serviceBuilder.AddService<DoorRequestService>();
 
     serviceBuilder.AddServiceEndpoint<AuthorizationService, ISecuritySystemAuthorization>(
         new NetTcpBinding(), "net.tcp://localhost:5000/Authorization");
@@ -45,6 +35,9 @@ app.UseServiceModel(serviceBuilder =>
 
     serviceBuilder.AddServiceEndpoint<DoorService, ISecuritySystemDoor>(
         new NetTcpBinding(), "net.tcp://localhost:5000/Door");
+
+    serviceBuilder.AddServiceEndpoint<DoorRequestService, ISecuritySystemDoorRequest>(
+        new NetTcpBinding(), "net.tcp://localhost:5000/DoorRequest");
 });
 
 app.Run();

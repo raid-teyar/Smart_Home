@@ -39,7 +39,7 @@ namespace SecuritySystem.UI.Views
 
         public MainWindow MainWindowContext { get; set; }
 
-        VideoCaptureDevice videoCapture;
+        public VideoCaptureDevice videoCapture { get; set; }
         FilterInfoCollection filterInfo;
 
         void StartCamera()
@@ -74,6 +74,8 @@ namespace SecuritySystem.UI.Views
             }
         }
 
+        
+
         public DashboardView(MainWindow mainwindow)
         {
             isFirstLoad = true;
@@ -82,7 +84,9 @@ namespace SecuritySystem.UI.Views
             DataContext = this;
 
             tbWelcome.Text = "Welcome home, " + MainWindowContext.LoginContext.LoggedUser.FullName + "!";
-            StartCamera();
+
+            // uncomment this line to start the camera
+            // StartCamera();
 
             // get only the first 5 history items
             HistoryList = MainWindowContext.LoginContext.Services.History.GetHistory().Take(5).ToList();

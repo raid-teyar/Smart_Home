@@ -5,13 +5,24 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecuritySystem.UI", "SecuritySystem.UI\SecuritySystem.UI.csproj", "{D27B4D39-FBE9-4FEB-AACE-9085FBA3DA54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Administration.WebApp", "Administration.WebApp\Administration.WebApp.csproj", "{7F4C3628-46EC-4658-994A-A1DBE7AA7452}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Administration.Server", "Administration.Server\Administration.Server.csproj", "{74B771B8-25EE-4AFA-817A-D13B9FA90B23}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartHome.Contracts", "SmartHome.Contracts\SmartHome.Contracts.csproj", "{27F3265D-15F6-4938-9F2D-0834C7C0F866}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecuritySystem.Server", "SecuritySystem.Server\SecuritySystem.Server.csproj", "{75CBE9D2-9F77-433B-BFA9-5CD00DFE6164}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecuritySystem.Server", "SecuritySystem.Server\SecuritySystem.Server.csproj", "{75CBE9D2-9F77-433B-BFA9-5CD00DFE6164}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Administration.WebApp", "Administration.WebApp\Administration.WebApp.csproj", "{DB8C5B38-A62B-4C85-8CA2-ADBEC516B29A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoorApp", "DoorApp\DoorApp.csproj", "{15BB7D9C-1843-44B0-956E-FCE831F1E5C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "screenshots", "screenshots", "{CF0F5699-0226-4F91-93D5-C1708D60E00F}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\dashboard.png = ..\..\..\Downloads\dashboard.png
+		..\..\..\Downloads\devices.png = ..\..\..\Downloads\devices.png
+		..\..\..\Downloads\devices_manage.png = ..\..\..\Downloads\devices_manage.png
+		..\..\..\Downloads\history.png = ..\..\..\Downloads\history.png
+		..\..\..\Downloads\login.png = ..\..\..\Downloads\login.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +34,6 @@ Global
 		{D27B4D39-FBE9-4FEB-AACE-9085FBA3DA54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D27B4D39-FBE9-4FEB-AACE-9085FBA3DA54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D27B4D39-FBE9-4FEB-AACE-9085FBA3DA54}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F4C3628-46EC-4658-994A-A1DBE7AA7452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F4C3628-46EC-4658-994A-A1DBE7AA7452}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F4C3628-46EC-4658-994A-A1DBE7AA7452}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F4C3628-46EC-4658-994A-A1DBE7AA7452}.Release|Any CPU.Build.0 = Release|Any CPU
 		{74B771B8-25EE-4AFA-817A-D13B9FA90B23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{74B771B8-25EE-4AFA-817A-D13B9FA90B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74B771B8-25EE-4AFA-817A-D13B9FA90B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +46,14 @@ Global
 		{75CBE9D2-9F77-433B-BFA9-5CD00DFE6164}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75CBE9D2-9F77-433B-BFA9-5CD00DFE6164}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75CBE9D2-9F77-433B-BFA9-5CD00DFE6164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB8C5B38-A62B-4C85-8CA2-ADBEC516B29A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB8C5B38-A62B-4C85-8CA2-ADBEC516B29A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB8C5B38-A62B-4C85-8CA2-ADBEC516B29A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB8C5B38-A62B-4C85-8CA2-ADBEC516B29A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15BB7D9C-1843-44B0-956E-FCE831F1E5C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15BB7D9C-1843-44B0-956E-FCE831F1E5C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15BB7D9C-1843-44B0-956E-FCE831F1E5C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15BB7D9C-1843-44B0-956E-FCE831F1E5C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

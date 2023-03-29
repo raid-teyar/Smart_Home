@@ -58,7 +58,7 @@ namespace SecuritySystem.UI.Views
             // add to the history
             SwitchButton switchButton = (SwitchButton)sender;
             string deviceState = (bool)switchButton?.IsChecked ? "on" : "off";
-            Grid parentGrid = (Grid)VisualTreeHelper.GetParent(switchButton);
+            StackPanel parentGrid = (StackPanel)VisualTreeHelper.GetParent(switchButton);
 
             TextBlock? nameTextBlock = parentGrid.Children.OfType<TextBlock>().ToList()[1];
 

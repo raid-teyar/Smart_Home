@@ -1,0 +1,187 @@
+﻿@page
+@model Administration.WebApp.Pages.Device.DevicesModel
+@{
+    ViewData["Title"] = "Devices";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/had.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <!--<img src="images/logo.png" alt="">-->
+            </div>
+
+            <span class="logo_name">CodingLab</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li>
+                    <a asp-page="/Home">
+                        <i class="uil uil-estate"></i>
+                        <span class="link-name">Dahsboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-page="/User/Users">
+                        <i class="uil uil-user-plus"></i>
+                        <span class="link-name">Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a asp-page="/Device/Devices">
+                        <i class="uil uil-desktop-cloud-alt"></i>
+                        <span class="link-name">Devices</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="logout-mode">
+                <li>
+                    <a asp-page="/Index">
+                        <i class="uil uil-signout"></i>
+                        <span class="link-name">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search here...">
+            </div>
+
+            <!--<img src="images/profile.jpg" alt="">-->
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-desktop-cloud-alt"></i>
+                    <span class="text">Devices</span>
+                </div>
+
+                <!-- add device button -->
+                <a class="btn btn-success mt-3" asp-page="/Device/AddDevice">Add Device</a>
+
+                <!-- list of devices -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Location
+                            </th>
+                            <th>
+                                Value Captured
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var device in Model.Devices)
+                        {
+                            <tr>
+                                <td>
+                                    @device.Name
+                                </td>
+                                <td>
+                                    @device.Type
+                                </td>
+                                <td>
+                                    @{
+                                        var status = device.State ? "On" : "Off";
+                                        var statusClass = device.State ? "text-success" : "text-danger";
+                                    }
+                                    <span class="@statusClass">@status</span>
+                                </td>
+                                <td>
+                                    @device.Room.Name
+                                </td>
+                                <td>
+                                    @device.Value
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary" asp-page="/Device/EditDevice" asp-route-id="@device.Id">Edit</a>
+                                    
+                                    <form asp-page-handler="DeleteDevice" asp-route-id="@device.Id" method="post" style="display:inline">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                
+                <div>
+                </div>
+            </div>
+    </section>
+
+
+    <script type="text/javascript">
+        const body = document.querySelector("body"),
+            modeToggle = body.querySelector(".mode-toggle");
+        sidebar = body.querySelector("nav");
+        sidebarToggle = body.querySelector(".sidebar-toggle");
+
+        let getMode = localStorage.getItem("mode");
+        if (getMode && getMode === "dark") {
+            body.classList.toggle("dark");
+        }
+
+        let getStatus = localStorage.getItem("status");
+        if (getStatus && getStatus === "close") {
+            sidebar.classList.toggle("close");
+        }
+
+        modeToggle.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            if (body.classList.contains("dark")) {
+                localStorage.setItem("mode", "dark");
+            } else {
+                localStorage.setItem("mode", "light");
+            }
+        });
+
+        sidebarToggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+            if (sidebar.classList.contains("close")) {
+                localStorage.setItem("status", "close");
+            } else {
+                localStorage.setItem("status", "open");
+            }
+        })
+    </script>
+
+</body>

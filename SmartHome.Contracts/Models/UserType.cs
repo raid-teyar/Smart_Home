@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecuritySystem.UI.Models
+namespace SmartHome.Contracts.Models
 {
     [Serializable]
     public enum UserType

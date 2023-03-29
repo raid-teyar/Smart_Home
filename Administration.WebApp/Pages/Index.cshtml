@@ -1,0 +1,34 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Modern Login Page";
+}
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="~/css/house.css" asp-append-version="true">
+</head>
+
+<div class="container">
+    <div class="design">
+        <div class="pill-1 rotate-45"></div>
+        <div class="pill-2 rotate-45"></div>
+        <div class="pill-3 rotate-45"></div>
+        <div class="pill-4 rotate-45"></div>
+    </div>
+    <form method="post" class="login">
+        <img src="~/house.jpg"/>
+        <div asp-validation-summary="All"></div>
+        <div class="text-input">
+            <i class="ri-user-fill"></i>
+            <input type="text" asp-for="Username" placeholder="Username">
+        </div>
+        <div class="text-input">
+            <i class="ri-lock-fill"></i>
+            <input asp-for="Password" type="password" placeholder="Password">
+        </div>
+        <button type="submit" class="login-btn">LOGIN</button>
+        <a  class="forgot">welcome to your home</a>
+    </form>
+</div>

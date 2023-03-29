@@ -2,13 +2,13 @@
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
-using SecuritySystem.UI.Models;
 using MySql.Data.MySqlClient;
 using System.ServiceModel;
 using SmartHome.Contracts.Models;
 
 namespace SecuritySystem.Server.Services
 {
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
     public class AuthorizationService : ISecuritySystemAuthorization
     {
 
@@ -17,6 +17,8 @@ namespace SecuritySystem.Server.Services
             using (IDbConnection cnn = new MySqlConnection(Globals.ConnectionString))
             {
                 User? user = cnn.Query<User>($"SELECT * FROM user WHERE email = '{email}' AND password = '{password}' ").FirstOrDefault();
+
+
                 if (user != null)
                 {
                     History history = new History

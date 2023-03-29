@@ -1,16 +1,9 @@
 ﻿using SecuritySystem.UI.Views;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.ServiceModel;
 using SmartHome.Contracts.Contracts;
-using SecuritySystem.UI.Models;
 using SecuritySystem.UI.Helpers;
-using SmartHome.Contracts.Models;
 
 namespace SecuritySystem.UI
 {
@@ -20,6 +13,8 @@ namespace SecuritySystem.UI
     public partial class App : Application
     {
         private readonly string _address = "net.tcp://localhost:5000/";
+        private readonly int _timeout = 30;
+        
         // ovveride OnStartup
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -48,10 +43,10 @@ namespace SecuritySystem.UI
                 IClientChannel? deviceChannel = deviceClient as IClientChannel;
                 IClientChannel? doorChannel = doorClient as IClientChannel;
 
-                autorizationChannel?.Open();
-                historyChannel?.Open();
-                deviceChannel?.Open();
-                doorChannel?.Open();
+                autorizationChannel?.Open(TimeSpan.FromMinutes(_timeout));
+                historyChannel?.Open(TimeSpan.FromMinutes(_timeout));
+                deviceChannel?.Open(TimeSpan.FromMinutes(_timeout));
+                doorChannel?.Open(TimeSpan.FromMinutes(_timeout));
 
                 ServicesGrabber services = new ServicesGrabber();
                 services.Authorization = authorizationClient;

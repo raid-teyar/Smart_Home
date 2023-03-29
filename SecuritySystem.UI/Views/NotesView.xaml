@@ -10,13 +10,10 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <busyIndicator:BusyMask
-            Background="{DynamicResource Secoundary}"
-            x:Name="BusyIndicator"
-            BusyContent="Please wait..."
-            IndicatorType="Dashes"
-            IsBusy="True">
-            
-        </busyIndicator:BusyMask>
+       <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="40"
+            Text="Notes" />
     </Grid>
 </UserControl>

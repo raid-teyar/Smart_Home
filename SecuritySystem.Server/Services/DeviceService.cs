@@ -6,6 +6,7 @@ using Dapper;
 
 namespace SecuritySystem.Server.Services
 {
+    [ServiceBehavior(IncludeExceptionDetailInFaults = true)]
     public class DeviceService : ISecuritySystemDevice
     {
         public List<Device> GetDevices()
